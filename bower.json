@@ -1,0 +1,27 @@
+{
+  "name": "wzulfikar",
+  "authors": [
+    "wzulfikar <wzulfikar@ymail.com>"
+  ],
+  "description": "Convenient plugin to handle submission of AJAX form",
+  "main": "src/main.js",
+  "moduleType": [],
+  "keywords": [
+    "ajax",
+    "form",
+    "jquery"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "install": "^1.0.4",
+    "jquery": "^1.8.0"
+  }
+}
