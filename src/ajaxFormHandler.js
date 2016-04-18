@@ -107,7 +107,7 @@ var ajaxFormHandler = function(e){
 // setup ajaxFormHandler plugin
 $.fn.ajaxFormHandler = function(){
   // ajax form handler
-  $('form[data-ajax-id]').on('submit', ajaxFormHandler);
+  $(document).on('submit', 'form[data-ajax-id]', ajaxFormHandler);
 };
 
 // init ajaxFormHandler
