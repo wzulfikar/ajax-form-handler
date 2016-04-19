@@ -21,7 +21,6 @@
     "tests"
   ],
   "dependencies": {
-    "install": "^1.0.4",
     "jquery": ">=1.7.1"
   }
 }
