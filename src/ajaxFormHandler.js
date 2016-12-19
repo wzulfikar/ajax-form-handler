@@ -20,7 +20,9 @@ var ajaxFormHandler = function(e){
 
   // toggle button to indicate processing request
   $toggleProcessing = $form.find('[data-toggle-processing="true"]'),
-  originalText      = $toggleProcessing.text();
+  originalText      = $toggleProcessing.is('button') 
+                    ? $toggleProcessing.text()
+                    : $toggleProcessing.val();
 
   // set default functions
   var defaultFns = {
@@ -33,14 +35,18 @@ var ajaxFormHandler = function(e){
     },
     processing:{
       show:function(){
-        $toggleProcessing
-          .text('Processing request..')
-          .attr('disabled', 'disabled');
+        if($toggleProcessing.is("button")) {
+          $toggleProcessing.attr('disabled', 'disabled').text('Processing..');
+        }else{
+          $toggleProcessing.attr('disabled', 'disabled').val('Processing..');
+        }
       },
       hide:function(){
-        $toggleProcessing
-          .text(originalText)
-          .removeAttr('disabled');
+        if($toggleProcessing.is("button")) {
+          $toggleProcessing.removeAttr('disabled').text(originalText);
+        }else{
+          $toggleProcessing.removeAttr('disabled').val(originalText);
+        }
       },
     },
     alert: {
@@ -89,14 +95,9 @@ var ajaxFormHandler = function(e){
     success:function(data, textStatus, jqXHR){
       // trigger success event
       $form.trigger(events.success, [$form, data]);
-
       $form.fn.processing.hide();
     },
     error:function(jqXHR, textStatus, errorThrown){
-      var msg = 'Error ' + jqXHR.status + ' : ' + errorThrown + '.';
-      
-      $form.fn.alert.error(msg);
-
       // trigger error event
       $form.trigger(events.error, [$form, jqXHR]);
       $form.fn.processing.hide();
